@@ -12,7 +12,7 @@ This is a web-based note-taking app built using **Flask**, **MySQL**, and **Flas
 - Flask (Python)
 - MySQL
 - Flask-Login
-- HTML/CSS (Jinja templates)
+- HTML/CSS
 
 ### Setup Instructions:
 1. Clone the repo
