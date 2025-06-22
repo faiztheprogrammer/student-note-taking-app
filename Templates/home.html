@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Notes Organizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="home-body">
+
+    <div class="hero-split">
+        <div class="hero-left">
+            <div class="hero-content">
+                <h1>Take Notes. <br> Study Smarter.</h1>
+                <p class="tagline">No more scattered notebooks or messy folders. Organize <br> your ideas, lectures, and summaries effortlessly.</p>
+
+                <div class="cta-buttons">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right"></div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>Create Subjects</h3>
+                <p>Easily create subjects for each of your courses.</p>
+            </div>
+            <div class="step">
+                <h3>Capture Notes</h3>
+                <p>Add notes under each subject and stay organized.</p>
+            </div>
+            <div class="step">
+                <h3>Access Anytime</h3>
+                <p>Access your notes anytime to study and revise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Test Section -->
+    <section class="how-it-works">
+        <h2>Features</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>Organize Subjects</h3>
+                <p>Keep all your subjects in one place. Add, update, or delete subjects as you go.</p>
+            </div>
+            <div class="step">
+                <h3>Note-Taking</h3>
+                <p>Create detailed notes for each subject, so you're always prepared.</p>
+            </div>
+            <div class="step">
+                <h3>Search & Filter</h3>
+                <p>Quickly find your notes with a simple search or filter by subject.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About This App</h2>
+        <p>This app was built to help students stay organized and focused. By capturing and managing your study notes digitally, you can stay on top of your coursework and always be prepared for exams.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Student Notes Organizer. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+</body>
+</html>

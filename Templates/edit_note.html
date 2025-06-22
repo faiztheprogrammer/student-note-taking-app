@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Note</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f8;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 150px;
+        }
+        .btn-primary {
+            background: #2980b9;
+            color: white;
+            border: none;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #2980b9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Note</h2>
+    <form method="POST">
+        <input type="text" name="title" value="{{ note[2] }}" required>
+        <textarea name="content" required>{{ note[3] }}</textarea>
+        <button class="btn-primary" type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+</div>
+</body>
+</html>

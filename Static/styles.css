@@ -1,0 +1,149 @@
+body.home-body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+
+.cta-buttons a {
+    text-decoration: none;
+    padding: 15px 25px;
+    
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary {
+    background-color: #6cd8b1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #6cd8b0b5;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #cfd8dc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #b0bec5;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.step {
+    width: 30%;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.about {
+    background-color: #f0f4f7;
+    width: 100%;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+/* My Hero Section */
+
+.hero-split {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.hero-left,
+.hero-right {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero-left {
+    background-image: url('patterns.png'); /* Replace with actual image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding-left: 100px;
+}
+
+.hero-content, h1, p {
+    color: black;
+}
+
+.hero-content h1 {
+    font-family: poppins;
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 64px;
+}
+
+.hero-content p {
+    font-family: poppins;
+    font-size: 18px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+.hero-right {
+    background-image: url('young-girl-studying-at-her-room-concept-free-vector.jpg'); /* Replace with actual image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+}

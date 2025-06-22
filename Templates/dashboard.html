@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - {{ user.name }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f8;
+            margin: 0;
+        }
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-bottom: 1px solid #445a6f;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        form input, form textarea, form select, button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            font-size: 14px;
+        }
+        .btn-danger, .btn-primary {
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            line-height: 1.2;
+            text-align: center;
+            min-width: 80px;
+        }
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #2980b9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: -10px;
+        }
+        .note {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .note h4 {
+            margin: 0 0 5px;
+        }
+        .note p {
+            margin: 5px 0 10px;
+        }
+        .actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .actions form,
+        .actions a {
+            display: inline-block;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Student Notes</h2>
+    <p>Hello, {{ user.name }}</p>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+
+<div class="main-content">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert {% if category == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="card">
+        <h3>Welcome back, {{ user.name }}!</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+
+    <!-- Add Subject and Add Note buttons -->
+    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+        <div style="flex: 1; background: #2980b9; color: white; padding: 20px; border-radius: 12px; text-align: center; cursor: pointer;"
+             onclick="document.getElementById('add-subject-form').style.display='block'">
+            <h3>Add Subject</h3>
+        </div>
+        <div style="flex: 1; background: #27ae60; color: white; padding: 20px; border-radius: 12px; text-align: center; cursor: pointer;"
+             onclick="document.getElementById('add-note-form').style.display='block'">
+            <h3>Add Note</h3>
+        </div>
+    </div>
+
+    <!-- Add Subject Form -->
+    <div id="add-subject-form" class="card" style="display: none;">
+        <h3>Add Subject</h3>
+        <form action="{{ url_for('add_subject') }}" method="POST">
+            <input type="text" name="subject_name" placeholder="Subject Name" required>
+            <button type="submit" class="btn-primary">Add Subject</button>
+        </form>
+    </div>
+
+    <!-- Add Note Form -->
+    <div id="add-note-form" class="card" style="display: none;">
+        <h3>Add Note</h3>
+        <form action="{{ url_for('add_note') }}" method="POST">
+            <select name="subject_id" required>
+                <option value="">-- Select Subject --</option>
+                {% for subject in subjects %}
+                    <option value="{{ subject[0] }}">{{ subject[2] }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="title" placeholder="Note Title" required>
+            <textarea name="content" placeholder="Note Content" rows="5" required></textarea>
+            <button type="submit" class="btn-primary">Add Note</button>
+        </form>
+    </div>
+
+    <!-- Subjects List -->
+    <!-- Subjects List -->
+{% for subject in subjects %}
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3>{{ subject[2] }}</h3>
+            <div class="actions">
+                <!-- Delete Subject Button -->
+                <form action="{{ url_for('delete_subject', subject_id=subject[0]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this subject and its notes?')">
+                    <button type="submit" class="btn-danger">Delete</button>
+                </form>
+                <!-- Edit Subject Button -->
+                <a href="{{ url_for('edit_subject', subject_id=subject[0]) }}" class="btn-primary">Edit</a>
+            </div>
+        </div>
+
+        {% set notes = notes_by_subject.get(subject[0], []) %}
+        {% if notes %}
+            {% for note in notes %}
+                <div class="note">
+                    <h4>{{ note[2] }}</h4>
+                    <p>{{ note[3] }}</p>
+                    <div class="actions">
+                        <!-- Delete Note Button -->
+                        <form action="{{ url_for('delete_note', note_id=note[0]) }}" method="POST" onsubmit="return confirm('Delete this note?')">
+                            <button type="submit" class="btn-danger">Delete</button>
+                        </form>
+                        <!-- Edit Note Button -->
+                        <a href="{{ url_for('edit_note', note_id=note[0]) }}" class="btn-primary">Edit</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No notes yet.</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>
